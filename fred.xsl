@@ -14,15 +14,15 @@
     </xsl:template>
 
     <xsl:template match="parent">
-      <PARENT1><xsl:value-of select="."/></PARENT1>
-      <stuff> This is stuff </stuff>
+      <PARENT1><xsl:value-of select="@name"/></PARENT1>
+      <stuff> This is stuff</stuff>
       <PARENT2><xsl:copy-of select="."/></PARENT2>
       <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="child">
       <CHILD1><xsl:value-of select="."/></CHILD1>
-      <CHILD2><xsl:copy-of select="."/></CHILD2>
+      <CHILD2><xsl:copy-of select="@*"/></CHILD2>
       <xsl:apply-templates/>
     </xsl:template>
 

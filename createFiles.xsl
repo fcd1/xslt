@@ -9,8 +9,8 @@
     </xsl:template>
 
     <xsl:template match="parent">
-      <xsl:variable name="filename" select="@name"/>
-      <xsl:result-document method="xml" href="parent_{position()}.xml" encoding="UTF-8" indent="yes">
+      <xsl:variable name="filename" select="concat(@name,'.xml')"/>
+      <xsl:result-document method="xml" href="{$filename}" encoding="UTF-8" indent="yes">
 	<PARENT1><xsl:value-of select="@name"/></PARENT1>
 	<stuff> This is stuff</stuff>
 	<PARENT2><xsl:copy-of select="."/></PARENT2>

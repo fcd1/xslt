@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="xml" indent = "yes" encoding="UTF-8"/>
+
+    <xsl:template match="rootElement">
+      <ROOT1><xsl:value-of select="."/></ROOT1>
+      <ROOT2><xsl:copy-of select="."/></ROOT2>
+      <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="parent">
+      <xsl:variable name="filename" select="@name"/>
+      <xsl:result-document method="xml" href="parent_{position()}.xml" encoding="UTF-8" indent="yes">
+	<PARENT1><xsl:value-of select="@name"/></PARENT1>
+	<stuff> This is stuff</stuff>
+	<PARENT2><xsl:copy-of select="."/></PARENT2>
+	<xsl:apply-templates/>
+      </xsl:result-document>
+    </xsl:template>
+
+    <xsl:template match="child">
+      <CHILD1><xsl:value-of select="."/></CHILD1>
+      <CHILD2><xsl:copy-of select="@*"/></CHILD2>
+      <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="/">
+      <family>
+	<xsl:apply-templates/>
+      </family>
+    </xsl:template>
+</xsl:stylesheet>

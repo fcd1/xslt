@@ -9,11 +9,6 @@
     </xsl:template>
 
     <xsl:template match="parent">
-      <PPARENT><xsl:value-of select="."/></PPARENT>
-      <PPARENT><xsl:copy-of select="."/></PPARENT>
-    </xsl:template>
-
-    <xsl:template match="parent">
       <PARENT1><xsl:value-of select="@name"/></PARENT1>
       <stuff> This is stuff</stuff>
       <PARENT2><xsl:copy-of select="."/></PARENT2>

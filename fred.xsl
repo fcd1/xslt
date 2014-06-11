@@ -3,8 +3,8 @@
   <xsl:output method="xml" indent = "yes" encoding="UTF-8"/>
 
     <xsl:template match="rootElement">
-      <ROOT><xsl:value-of select="."/></ROOT>
-      <ROOT><xsl:copy-of select="."/></ROOT>
+      <ROOT1><xsl:value-of select="."/></ROOT1>
+      <ROOT2><xsl:copy-of select="."/></ROOT2>
       <xsl:apply-templates/>
     </xsl:template>
 
@@ -14,20 +14,20 @@
     </xsl:template>
 
     <xsl:template match="parent">
-      <PARENT><xsl:value-of select="."/></PARENT>
+      <PARENT1><xsl:value-of select="."/></PARENT1>
       <stuff> This is stuff </stuff>
-      <PARENT><xsl:copy-of select="."/></PARENT>
+      <PARENT2><xsl:copy-of select="."/></PARENT2>
       <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="parent/child">
-      <CHILD><xsl:value-of select="."/></CHILD>
-      <CHILD><xsl:copy-of select="."/></CHILD>
+    <xsl:template match="child">
+      <CHILD1><xsl:value-of select="."/></CHILD1>
+      <CHILD2><xsl:copy-of select="."/></CHILD2>
+      <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="/">
       <family>
-	<xsl:apply-templates/>
 	<xsl:apply-templates/>
       </family>
     </xsl:template>

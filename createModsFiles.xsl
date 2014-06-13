@@ -11,6 +11,7 @@
       <xsl:result-document method="xml" href="{$filename}" encoding="UTF-8" indent="yes">
 	<xsl:copy>
 	  <xsl:attribute name="xsi:schemaLocation">http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd</xsl:attribute>
+	  <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 	  <xsl:copy-of select="./*"/>
 	</xsl:copy>
       </xsl:result-document>

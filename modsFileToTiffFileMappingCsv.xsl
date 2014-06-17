@@ -16,7 +16,14 @@
     <xsl:if test="@type='local'">
       <xsl:value-of select="concat(.,'.xml')"/>
       <xsl:text>,</xsl:text>
-      <xsl:apply-templates select="../note"/>
+      <xsl:choose>
+	<xsl:when test="position() = last()">
+	  <xsl:apply-templates select="../note" mode="last"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:apply-templates select="../note"/>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
 
@@ -26,6 +33,19 @@
       <xsl:choose>
 	<xsl:when test="position() = last()">
 	  <xsl:text>&#10;</xsl:text>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:text> </xsl:text>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="note" mode="last">
+    <xsl:if test="starts-with(.,'original filename')">
+      <xsl:value-of select="replace(.,'original filename: ','')"/>
+      <xsl:choose>
+	<xsl:when test="position() = last()">
 	</xsl:when>
 	<xsl:otherwise>
 	  <xsl:text> </xsl:text>

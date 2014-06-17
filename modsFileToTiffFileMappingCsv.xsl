@@ -18,34 +18,29 @@
       <xsl:text>,</xsl:text>
       <xsl:choose>
 	<xsl:when test="position() = last()">
-	  <xsl:apply-templates select="../note" mode="last"/>
+	  <xsl:apply-templates select="../note">
+	    <xsl:with-param name="endofline">
+	    </xsl:with-param>
+	  </xsl:apply-templates>
 	</xsl:when>
 	<xsl:otherwise>
-	  <xsl:apply-templates select="../note"/>
+	  <xsl:apply-templates select="../note">
+	    <xsl:with-param name="endofline">
+	      <xsl:text>&#10;</xsl:text>
+	    </xsl:with-param>
+	  </xsl:apply-templates>
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="note">
+    <xsl:param name="endofline"/>
     <xsl:if test="starts-with(.,'original filename')">
       <xsl:value-of select="replace(.,'original filename: ','')"/>
       <xsl:choose>
 	<xsl:when test="position() = last()">
-	  <xsl:text>&#10;</xsl:text>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:text> </xsl:text>
-	</xsl:otherwise>
-      </xsl:choose>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="note" mode="last">
-    <xsl:if test="starts-with(.,'original filename')">
-      <xsl:value-of select="replace(.,'original filename: ','')"/>
-      <xsl:choose>
-	<xsl:when test="position() = last()">
+	  <xsl:value-of select="$endofline"/>
 	</xsl:when>
 	<xsl:otherwise>
 	  <xsl:text> </xsl:text>

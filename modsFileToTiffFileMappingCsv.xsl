@@ -13,9 +13,11 @@
   </xsl:template>
 
   <xsl:template name="identifier">
-    <xsl:value-of select="concat(.,'.xml')"/>
-    <xsl:text>,</xsl:text>
-    <xsl:apply-templates select="../note"/>
+    <xsl:if test="@type='local'">
+      <xsl:value-of select="concat(.,'.xml')"/>
+      <xsl:text>,</xsl:text>
+      <xsl:apply-templates select="../note"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="note">

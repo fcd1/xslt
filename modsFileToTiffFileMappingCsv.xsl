@@ -5,10 +5,17 @@
 <xsl:output method="text" indent = "no" />
 <xsl:strip-space elements="*" />
 
-    <xsl:template match="mods">
-      <xsl:value-of select="concat(identifier/.,'.xml')"/>
+    <xsl:template match="/modsCollection">
+      <xsl:for-each select="mods/identifier">
+        <xsl:sort select="."/>
+        <xsl:call-template name="identifier"/>
+      </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="identifier">
+      <xsl:value-of select="concat(.,'.xml')"/>
       <xsl:text>,</xsl:text>
-      <xsl:apply-templates select="note"/>
+      <xsl:apply-templates select="../note"/>
     </xsl:template>
 
     <xsl:template match="note">

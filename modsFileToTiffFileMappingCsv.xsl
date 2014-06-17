@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="text" indent = "no" />
 <xsl:strip-space elements="*" />
 
@@ -11,7 +11,7 @@
 
     <xsl:template match="note">
       <xsl:if test="starts-with(.,'original filename')">
-	<xsl:value-of select="."/>
+	<xsl:value-of select="replace(.,'original filename: ','')"/>
 	<xsl:choose>
 	  <xsl:when test="position() = last()">
 	    <xsl:text>&#10;</xsl:text>
